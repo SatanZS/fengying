@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>投客圈后台管理系统</title>
+		<link rel="stylesheet" type="text/css" href="sources/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="sources/css/global.css" />
+
+		<script src="sources/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/bootstrap-3.3.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/js/global.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div class="container-fluid">
+			<div class="header">
+				<span class="logo">投客圈后台管理系统</span>
+				<div class="btn-group fr">
+					<a class="admin_name" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;超级管理员&nbsp;<span class="caret"></a>
+					<ul class="admin_operate dropdown-menu dropdown-menu-right" role="menu">
+						<li>
+							<a href="#">退出登录</a>
+						</li>
+						<li>
+							<a href="#">修改密码</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu">
+				<ul>
+					<li class="menu_item menu_open">
+						<a class="menu_header" href="#">路演</a>
+						<ul>
+							<li>
+								<a class="menu_link " href="index.html">发布路演</a>
+							</li>
+							<li>
+								<a class="menu_link " href="#">往期精彩</a>
+							</li>
+							<li>
+								<a class="menu_link menu_selected" href="rslist.html">路演列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">公告</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布公告</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">公告列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">话题</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布话题</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">话题列表</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<link rel="stylesheet" type="text/css" href="sources/css/rsList.css"/>
+			<div class="breadcrumb_nav">
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="#">路演</a>
+					</li>
+					<li class="active">路演列表</li>
+				</ol>
+			</div>
+			<div class="content">
+				<ul class="nav nav-tabs rlist_nav" role="tablist">
+					<li role="presentation" class="active"><a href="#">发行路演</a></li>
+					<li role="presentation" class=""><a href="#">推介路演</a></li>
+				</ul>
+				<table class="table table-hover rslist">
+					<thead>
+						<tr class="active"><th width="80">序号</th><th width="80">视频ID</th><th>视频名称</th><th width="160">上传时间</th><th width="100">视频类型</th><th width="200">上传人</th><th width="150">操作</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>1</td><td>Data</td><td>Data</td><td>Data</td><td>Data</td><td>Data</td><td><a href="#" class="btn btn-primary btn-xs">编辑</a>&emsp;<a href="#" class="btn btn-danger btn-xs">删除</a></td></tr>
+					</tbody>
+					<tfoot>
+						<tr class="active">
+							<td colspan="7" align="right" class="list_nav">
+								当前第<span class="curPage">1</span>页/共<span class="allPage">1</span>页 &nbsp;共<span class="allNum">1</span>条&nbsp;
+								<a href="#" class="btn btn-default btn-xs index_btn">首页</a>
+								<a href="#" class="btn btn-default btn-xs prev_btn">上一页</a>
+								<label><input type="text" id="page" class="form-control"/></label>
+								<a href="#" class="btn btn-default btn-xs">GO</a>
+								<a href="#" class="btn btn-default btn-xs next_btn">下一页</a>
+								<a href="#" class="btn btn-default btn-xs last_btn">尾页</a>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<script src="sources/js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/js/roadshow.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				getRoadshowList(1, 5, 1);
+				$(function() {
+					$(".rlist_nav li").click(function(){
+						$(".rlist_nav li").removeClass("active");
+						$(this).addClass("active");
+						getRoadshowList($(this).index()+1, 5, 1);
+					});
+					
+					$(".prev_btn").click(function() {
+						var rst = $(".rlist_nav li.active").index() + 1;
+						var curPage = parseInt($(".curPage").text());
+						if(curPage > 1) {
+							curPage--;
+							getRoadshowList(rst, 5, curPage);
+						}
+					});
+					$(".next_btn").click(function() {
+						var rst = $(".rlist_nav li.active").index() + 1;
+						var curPage = parseInt($(".curPage").text());
+						var allPage = parseInt($(".allPage").text());
+						if(curPage < allPage) {
+							curPage++;
+							getRoadshowList(rst, 5, curPage);
+						}
+					});
+					$(".index_btn").click(function() {
+						var rst = $(".rlist_nav li.active").index() + 1;
+						var curPage = parseInt($(".curPage").text());
+						if(curPage > 1) {
+							getRoadshowList(rst, 5, 1);
+						}
+					});
+					$(".last_btn").click(function() {
+						var rst = $(".rlist_nav li.active").index() + 1;
+						var curPage = parseInt($(".curPage").text());
+						var allPage = parseInt($(".allPage").text());
+						if(curPage < allPage) {
+							getRoadshowList(rst, 5, allPage);
+						}
+					});
+				});
+			</script>
+			<div class="footer"></div>
+		</div>
+	</body>
+
+</html>

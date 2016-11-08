@@ -1,0 +1,27 @@
+{
+  "name": "fengying",
+  "version": "1.0.0",
+  "description": "蜂赢公司项目前端代码\r # 投客圈\r toukequan目录下面文件",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SatanZS/fengying.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SatanZS/fengying/issues"
+  },
+  "homepage": "https://github.com/SatanZS/fengying#readme",
+  "devDependencies": {
+    "connect-livereload": "^0.6.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-watch": "^1.0.0",
+    "serve-index": "^1.8.0",
+    "serve-static": "^1.11.1"
+  }
+}

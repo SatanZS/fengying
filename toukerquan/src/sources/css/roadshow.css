@@ -1,0 +1,22 @@
+#showVideoImg,.showIntroImg{
+	max-width: 100px;
+	max-height: 100px;
+}
+.required_sign{
+	color: red;
+	display: inline-block;
+}
+
+/*------detail------*/
+.videoImg,.littleurl{
+	max-width: 100%;
+}
+.edit_btn{
+	position: relative;
+	top: -8px;
+	z-index: 3;
+	height: 25px;
+}
+.edit_btn a{
+	margin-right: 20px;
+}

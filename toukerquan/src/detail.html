@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>投客圈后台管理系统</title>
+		<link rel="stylesheet" type="text/css" href="sources/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="sources/css/global.css" />
+
+		<script src="sources/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/bootstrap-3.3.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/js/global.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div class="container-fluid">
+			<div class="header">
+				<span class="logo">投客圈后台管理系统</span>
+				<div class="btn-group fr">
+					<a class="admin_name" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;超级管理员&nbsp;<span class="caret"></a>
+					<ul class="admin_operate dropdown-menu dropdown-menu-right" role="menu">
+						<li>
+							<a href="#">退出登录</a>
+						</li>
+						<li>
+							<a href="#">修改密码</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu">
+				<ul>
+					<li class="menu_item menu_open">
+						<a class="menu_header" href="#">路演</a>
+						<ul>
+							<li>
+								<a class="menu_link " href="index.html">发布路演</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">往期精彩</a>
+							</li>
+							<li>
+								<a class="menu_link menu_selected" href="rslist.html">路演列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">公告</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布公告</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">公告列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">话题</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布话题</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">话题列表</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<link rel="stylesheet" type="text/css" href="sources/css/roadshow.css"/>
+			<div class="breadcrumb_nav">
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="rslist.html">路演列表</a>
+					</li>
+					<li class="active">路演详情</li>
+				</ol>
+			</div>
+			<div class="content">
+				<div class="edit_btn">
+					<a href="index.html?id=12" class="btn btn-default btn-xs fr">编辑</a>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						路演简介
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-2">
+								<img class="videoImg" src=""/>
+							</div>
+							<div class="col-sm-10">
+								<ul>
+									<li>
+										<label for="">路演标题:</label>
+										<span class="title"></span>
+									</li>
+									<li>
+										<label for="">视频网址:</label>
+										<span class="url"></span>
+									</li>
+									<li>
+										<label for="">主办单位:</label>
+										<span class="sponsor"></span>
+									</li>
+									<li>
+										<label for="">协办单位:</label>
+										<span class="cosponsor"></span>
+									</li>
+									<li>
+										<label for="">路演时间:</label>
+										<span class="time"></span>
+									</li>
+									<li>
+										<label for="">活动简介:</label>
+										<span class="introduction"></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						路演流程
+					</div>
+					<div class="panel-body">
+						<ul class="process">
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						企业介绍
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-2">
+							<img class="littleurl" src=""/>
+						</div>
+						<div class="col-sm-10">
+							<p class="company"></p>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						最新播报
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
+			</div>
+			<script src="sources/js/roadshow.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				$(function(){
+			    	var locationUrl = window.location.href;
+			    	if (locationUrl.indexOf("id") != -1) {
+			    		var rsid = locationUrl.slice(locationUrl.indexOf("id")+3);
+			    		getRoadshow(rsid,1);
+			    	}
+			    });
+			</script>
+			<div class="footer"></div>
+		</div>
+	</body>
+
+</html>

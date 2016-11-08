@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>投客圈后台管理系统</title>
+		<link rel="stylesheet" type="text/css" href="sources/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap-3.3.0/css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="sources/css/global.css" />
+
+		<script src="sources/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/bootstrap-3.3.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="sources/js/global.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div class="container-fluid">
+			<div class="header">
+				<span class="logo">投客圈后台管理系统</span>
+				<div class="btn-group fr">
+					<a class="admin_name" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;超级管理员&nbsp;<span class="caret"></a>
+					<ul class="admin_operate dropdown-menu dropdown-menu-right" role="menu">
+						<li>
+							<a href="#">退出登录</a>
+						</li>
+						<li>
+							<a href="#">修改密码</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu">
+				<ul>
+					<li class="menu_item menu_open">
+						<a class="menu_header" href="#">路演</a>
+						<ul>
+							<li>
+								<a class="menu_link menu_selected" href="index.html">发布路演</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">往期精彩</a>
+							</li>
+							<li>
+								<a class="menu_link" href="rslist.html">路演列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">公告</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布公告</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">公告列表</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu_item">
+						<a class="menu_header" href="#">话题</a>
+						<ul>
+							<li>
+								<a class="menu_link" href="#">发布话题</a>
+							</li>
+							<li>
+								<a class="menu_link" href="#">话题列表</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<link rel="stylesheet" type="text/css" href="sources/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+			<link rel="stylesheet" type="text/css" href="sources/css/roadshow.css"/>
+			<div class="breadcrumb_nav">
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="#">路演</a>
+					</li>
+					<li class="active">发布路演</li>
+				</ol>
+			</div>
+			<div class="content">
+				<form class="form-inline" role="form" action="addRoadshow" method="post" onsubmit="return addorUpdateRoadshow(this);" enctype="multipart/form-data">
+					<input type="hidden" name="id" id="rsid" value="" />
+					<input type="hidden" name="t" id="rst" value="" />
+					<div class="panel panel-default">
+					  	<div class="panel-heading">&bull;&nbsp;路演视频</div>
+					  	<div class="panel-body">
+					  		<div class="row">
+								<div class="col-md-6">
+									<lable for="video_type">视频类型：</lable>
+									<select id="video_type" class="form-control" name="videoType">
+									  <option value="1">奥点云</option>
+									  <option value="2">视频地址</option>
+									  <option value="3">视频文件</option>
+									</select>
+									<span class="required_sign">*</span>
+								</div>
+								<div class="col-md-6">
+									<label for="video_url">视频地址：</label>
+					  				<input id="video_url" name="videoUrl" type="text" class="form-control"/>
+									<span class="required_sign">*</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<lable for="roadshow_type">路演类型：</lable>
+									<select id="roadshow_type" name="roadshowType" class="form-control">
+									  <option value="1">发行路演</option>
+									  <option value="2">推介路演</option>
+									</select>
+									<span class="required_sign">*</span>
+								</div>
+								<div class="col-md-6">
+									<label for="img_url">上传视频图片：</label>
+				  					<input id="img_url" name="videoImg" type="file"/>
+				  					<img src="" id="showVideoImg"/>
+				  					<input type="hidden" id="videoImgStr" name="videoImgStr" value="" />
+				  					<span class="required_sign">* 图片尺寸 216 x 216</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">&bull;&nbsp;路演简介</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="video_tit">路演标题：</label>
+					  				<input id="video_tit" name="videoTit" type="text" class="form-control"/>
+									<span class="required_sign">*</span>
+								</div>
+								<div class="col-md-6">
+									<label for="video_sponsor">主办单位：</label>
+					  				<input id="video_sponsor" name="videoSponsor" type="text" class="form-control"/>
+									<span class="required_sign">*</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label for="starttime">开始时间：</label>
+				  				    <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="starttime2" data-link-format="yyyy-mm-dd hh:ii"> 
+								        <input class="form-control" id="starttime" size="16" type="text" value="" readonly>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								    </div>
+								    <input type="hidden" id="starttime2" name="startTime" value="" />
+									<span class="required_sign">*</span>
+								</div>
+								<div class="col-md-6">
+									<label for="endtime">结束时间：</label>
+					  				<div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii" data-link-field="endtime2" data-link-format="yyyy-mm-dd hh:ii">
+								        <input class="form-control" id="endtime" size="16" type="text" value="" readonly>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								    </div> 
+								    <input type="hidden" id="endtime2" name="endTime" value="" />
+								    <span class="required_sign">*</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<label for="co_sponsors">协办单位：</label>
+					  				<input id="co_sponsors" name="coSponsors" type="text" class="form-control"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<label for="short_intro">活动简介：</label>
+				  					<textarea id="short_intro" name="shortIntro" class="form-control" maxlength="400" rows="6" cols="70"></textarea>
+									<span class="required_sign">*</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">&bull;&nbsp;路演流程</div>
+						<div class="panel-body">
+							<div class="row process">
+								<div class="col-md-6">
+									<label for="">流程一：</label>
+					  				<input id="" type="text" name="process" class="form-control"/>
+								</div>
+								<div class="col-md-6">
+									<label for="">流程二：</label>
+					  				<input id="" type="text" name="process" class="form-control"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">&bull;&nbsp;企业介绍</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+									<label for="intro">企业介绍：</label>
+				  					<textarea id="intro" name="intro" class="form-control" maxlength="500" rows="6" cols="100"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<label for="intro_img">上传图片：</label>
+									<input type="file" name="introImg" id="intro_img" value="" />
+									<img src="" class="showIntroImg"/>
+									<input type="hidden" name="introImgStr" id="introImgStr" value="" />
+									<span class="required_sign">* 图片尺寸 330 x 211</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<button type="submit" class="btn btn-default fr">提交</button>
+						</div>
+					</div>
+					<div class="modal fade bs-example-modal-sm" id="modal_mess" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-sm">
+					    <div class="modal-content">
+						  <div class="modal-body">
+						  </div>
+						  <div class="modal-footer">
+						  	<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">确定</button>
+						  </div>
+					    </div>
+					  </div>
+					</div>
+				</form>
+			</div>
+			<script src="sources/js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" charset="utf-8"></script>
+			<script src="sources/js/roadshow.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				$('.form_datetime').datetimepicker({
+					language:  'zh-CN',
+			        weekStart: 7,
+			        todayBtn:  1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+			        showMeridian: 1
+			    });
+			    $(function(){
+			    	var locationUrl = window.location.href;
+			    	if (locationUrl.indexOf("id") != -1) {
+			    		var rsid = locationUrl.slice(locationUrl.indexOf("id")+3);
+			    		$("#rsid").val(rsid);
+			    		$("#rst").val(2);
+			    		getRoadshow(rsid,2);
+			    		$(".breadcrumb .active").text("编辑路演");
+			    	}else{
+			    		$("#rst").val(1);
+			    	}
+			    });
+			</script>
+			<div class="footer"></div>
+		</div>
+	</body>
+
+</html>
